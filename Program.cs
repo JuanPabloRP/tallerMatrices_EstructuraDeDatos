@@ -11,7 +11,7 @@ namespace tallerMatrices
 
         static void Menu()
         {
-
+            
             int op = 0;
             string dato = "";
 
@@ -61,32 +61,29 @@ namespace tallerMatrices
             int[,] Matriz;
             bool ok = false;
 
-
+            //Creando vector, se pregunta por el tamaño
             do
             {
                 Console.WriteLine("Ingrese el número de filas y columnas: ");
                 dato = Console.ReadLine();
 
-                if (int.TryParse(dato, out filasyColumnas))
-                {
-                    if (filasyColumnas > 0)
-                    {
+                if (int.TryParse(dato, out filasyColumnas) && (filasyColumnas > 0))
+                { 
                         ok = true;
-                    }
                 }
-
-                if (ok == false)
+                else
                 {
                     Console.WriteLine("Error, ingrese un entero mayor a cero.");
                 }
             
             } while (ok == false);
 
-
+            //k = tamaño vector 
             k = filasyColumnas - 1;
+            
             Matriz = new int[filasyColumnas, filasyColumnas];
             
-
+            //llenando matriz
             for (f = 0; f < filasyColumnas; f++)
             {
                 for (c = 0; c < filasyColumnas; c++)
@@ -112,8 +109,7 @@ namespace tallerMatrices
             }
 
 
-            Console.WriteLine("\nImprimer vector: ");
-
+            Console.WriteLine("\nImprimir vector: ");
             for (f = 0; f < filasyColumnas; f++)
             {
                 for (c = 0; c < filasyColumnas; c++)
@@ -123,20 +119,18 @@ namespace tallerMatrices
                 Console.WriteLine();
             }
 
+
             Console.WriteLine("\nLa diagonal secundaria es: ");
-
-
             for (i = 0; i < filasyColumnas; i++)
             {
                 Console.WriteLine(Matriz[i, k] + " ");
                 k--;
             }
-
         }
 
+
         /*
-            2. Realice un programa que cree una matriz de 5x5 con datos ingresados por pantalla
-            y muestre el elemento ubicado en la p.
+            2. Realice un programa que cree una matriz de 5x5 con datos ingresados por pantalla y muestre el elemento ubicado en la posición central de la matriz.
         */
         static void Punto2()
         {
@@ -145,7 +139,7 @@ namespace tallerMatrices
             int[,] Matriz = new int[5, 5];
             bool ok = false;
 
-
+            //creando vector, se pregunta por el tamaño
             for (f = 0; f < 5; f++)
             {
                 for (c = 0; c < 5; c++)
@@ -172,7 +166,9 @@ namespace tallerMatrices
                 }
             }
 
-
+            //Codigo para buscar p posicion en la matriz, como ya no hace falta se comenta por si se necesita después xde
+            //preguntaba por fila y columna
+            /*
             ok = false;
             do
             {
@@ -215,10 +211,10 @@ namespace tallerMatrices
                 }
 
             } while (ok != true);
+            */
 
 
-            Console.WriteLine("\nImprimer vector: ");
-
+            Console.WriteLine("\nImprimir vector: ");
             for (f = 0; f < Matriz.GetLength(0); f++)
             {
                 for (c = 0; c < Matriz.GetLength(1); c++)
@@ -229,8 +225,7 @@ namespace tallerMatrices
             }
 
 
-
-            Console.WriteLine("\nEl valor de la matriz, ubicado en fila: " + fb + " y, en columna: " + cb + " es: " + Matriz[fb, cb]);
+            Console.WriteLine("\nEl valor de la matriz, ubicado en la posición central del vector es: " + Matriz[2, 2]);
         }
 
 
@@ -256,7 +251,6 @@ namespace tallerMatrices
             {
                 for (c = 0; c < Matriz.GetLength(1); c++)
                 {
-
                     ok = false;
                     do
                     {
@@ -280,7 +274,7 @@ namespace tallerMatrices
 
 
             //imprimiendo vector
-            Console.WriteLine("\nImprimer vector: ");
+            Console.WriteLine("\nImprimir vector: ");
             for (f = 0; f < Matriz.GetLength(0); f++)
             {
                 for (c = 0; c < Matriz.GetLength(1); c++)
@@ -292,7 +286,8 @@ namespace tallerMatrices
 
             /*
             //vector booleano
-            Console.WriteLine("\nImprimer vector: ");
+            //sirve para que marque los que están repetidos para evitar que los vuelva a contar
+            Console.WriteLine("\nImprimir vector: ");
             for (f = 0; f < matrizBool.GetLength(0); f++)
             {
                 for (c = 0; c < matrizBool.GetLength(1); c++)
@@ -303,39 +298,7 @@ namespace tallerMatrices
             }
             */
 
-
-            for (f = 0; f < Matriz.GetLength(0); f++)
-            {
-                for (c = 0; c < Matriz.GetLength(1); c++)
-                {
-                    
-                    contadorDiv = 0;
-                    //ver si hay primos
-                    for (int i = 2; i <= (Matriz[f, c] - 1); i++)
-                    {
-                        if (Matriz[f, c] % i == 0)
-                        {
-                            contadorDiv++;
-                        }
-
-                    }
-
-                    //ir incrementando si existe numeros primos
-                    if (contadorDiv == 0 && (Matriz[f,c] > 1))
-                    {
-                        cantPrimos++;
-                    }
-
-                    //ir incrementando si existe numeros multiplos de 5
-                    if (Matriz[f, c] % 5 == 0)
-                    {
-                        cantMult5++;
-                    }
-
-                }
-            }
-
-
+            //cantidad numeros repetidos
             for (f = 0; f < Matriz.GetLength(0); f++)
             {
                 for (c = 0; c < Matriz.GetLength(1); c++)
@@ -350,7 +313,6 @@ namespace tallerMatrices
                                 {
                                     matrizBool[i, j] = true;
                                     cantRep++;
-                                    
                                 }
                             }
                         }
@@ -358,6 +320,38 @@ namespace tallerMatrices
                 }
             }
 
+            //Cantidad numeros primos y cantidad numeros multiplos de 5
+            for (f = 0; f < Matriz.GetLength(0); f++)
+            {
+                for (c = 0; c < Matriz.GetLength(1); c++)
+                {
+                    
+                    contadorDiv = 0;
+                    //ver si hay primos
+                    for (int i = 2; i <= (Matriz[f, c] - 1); i++)
+                    {
+                        if (Matriz[f, c] % i == 0)
+                        {
+                            contadorDiv++;
+                        }
+                    }
+
+                    //ir incrementando si existe numeros primos
+                    if (contadorDiv == 0 && (Matriz[f,c] > 1))
+                    {
+                        cantPrimos++;
+                    }
+
+                    //ir incrementando si existe numeros multiplos de 5
+                    if (Matriz[f, c] % 5 == 0)
+                    {
+                        cantMult5++;
+                    }
+                }
+            }
+
+
+            
             Console.WriteLine("Cantidad números primos: " + cantPrimos);
             Console.WriteLine("Cantidad números multiplos de 5: " + cantMult5);
             Console.WriteLine("Cantidad rep: " + cantRep);
