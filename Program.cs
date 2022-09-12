@@ -284,19 +284,10 @@ namespace tallerMatrices
                 Console.WriteLine();
             }
 
-            /*
-            //vector booleano
-            //sirve para que marque los que están repetidos para evitar que los vuelva a contar
-            Console.WriteLine("\nImprimir vector: ");
-            for (f = 0; f < matrizBool.GetLength(0); f++)
-            {
-                for (c = 0; c < matrizBool.GetLength(1); c++)
-                {
-                    Console.Write(matrizBool[f, c] + "\t");
-                }
-                Console.WriteLine();
-            }
-            */
+            
+            
+            
+
 
             //cantidad numeros repetidos
             for (f = 0; f < Matriz.GetLength(0); f++)
@@ -307,7 +298,7 @@ namespace tallerMatrices
                     {
                         for (int j = 0; j < Matriz.GetLength(1); j++)
                         {
-                            if (Matriz[f, c] == Matriz[i, j] && (c != j))
+                            if (Matriz[f, c] == Matriz[i, j] && (f != i || c != j))
                             {
                                 if (matrizBool[i, j] == false)
                                 {
@@ -319,6 +310,21 @@ namespace tallerMatrices
                     }
                 }
             }
+
+
+            //vector booleano
+            //sirve para que marque los que están repetidos para evitar que los vuelva a contar
+            /*
+            Console.WriteLine("\nImprimir vector: ");
+            for (f = 0; f < matrizBool.GetLength(0); f++)
+            {
+                for (c = 0; c < matrizBool.GetLength(1); c++)
+                {
+                    Console.Write(matrizBool[f, c] + "\t");
+                }
+                Console.WriteLine();
+            }
+            */
 
             //Cantidad numeros primos y cantidad numeros multiplos de 5
             for (f = 0; f < Matriz.GetLength(0); f++)
@@ -343,7 +349,7 @@ namespace tallerMatrices
                     }
 
                     //ir incrementando si existe numeros multiplos de 5
-                    if (Matriz[f, c] % 5 == 0)
+                    if (Matriz[f, c] % 5 == 0 && Matriz[f, c] != 0 )
                     {
                         cantMult5++;
                     }
@@ -351,7 +357,10 @@ namespace tallerMatrices
             }
 
 
+
             
+
+
             Console.WriteLine("Cantidad números primos: " + cantPrimos);
             Console.WriteLine("Cantidad números multiplos de 5: " + cantMult5);
             Console.WriteLine("Cantidad rep: " + cantRep);
